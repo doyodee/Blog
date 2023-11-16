@@ -1,3 +1,0 @@
-class HomeItemModel {
-  String? id = "";
-}

@@ -1,22 +1,9 @@
 import '../interests_screen/widgets/chipviewart_item_widget.dart';
-import 'bloc/interests_bloc.dart';
-import 'models/chipviewart_item_model.dart';
-import 'models/interests_model.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:bulle_s_application3/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class InterestsScreen extends StatelessWidget {
-  static Widget builder(BuildContext context) {
-    return BlocProvider<InterestsBloc>(
-      create: (context) => InterestsBloc(InterestsState(
-        interestsModelObj: InterestsModel(),
-      ))
-        ..add(InterestsInitialEvent()),
-      child: InterestsScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,7 +25,7 @@ class InterestsScreen extends StatelessWidget {
                   top: 10,
                 ),
                 child: Text(
-                  "lbl_welcome".tr,
+                  "Welcome",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtPoppinsSemiBold16Black900.copyWith(
@@ -64,7 +51,7 @@ class InterestsScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "msg_what_are_you_in".tr,
+                        "What are you interested in?",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtPoppinsBold20,
@@ -73,7 +60,7 @@ class InterestsScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "msg_what_are_you_in".tr,
+                        "What are you interested in?",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtPoppinsBold20,
@@ -92,7 +79,7 @@ class InterestsScreen extends StatelessWidget {
                   right: 35,
                 ),
                 child: Text(
-                  "msg_add_or_edit_top".tr,
+                  "Add or edit topics you follow.\nChoose three or more.",
                   maxLines: null,
                   textAlign: TextAlign.center,
                   style: AppStyle.txtPoppinsRegular16,
@@ -102,36 +89,15 @@ class InterestsScreen extends StatelessWidget {
                 padding: getPadding(
                   top: 23,
                 ),
-                child: BlocSelector<InterestsBloc, InterestsState,
-                    InterestsModel?>(
-                  selector: (state) => state.interestsModelObj,
-                  builder: (context, interestsModelObj) {
-                    return Wrap(
-                      runSpacing: getVerticalSize(
-                        5,
-                      ),
-                      spacing: getHorizontalSize(
-                        5,
-                      ),
-                      children: List<Widget>.generate(
-                        interestsModelObj?.chipviewartItemList.length ?? 0,
-                        (index) {
-                          ChipviewartItemModel model =
-                              interestsModelObj?.chipviewartItemList[index] ??
-                                  ChipviewartItemModel();
-
-                          return ChipviewartItemWidget(
-                            model,
-                            onSelectedChipView: (value) {
-                              context.read<InterestsBloc>().add(
-                                  UpdateChipViewEvent(
-                                      index: index, isSelected: value));
-                            },
-                          );
-                        },
-                      ),
-                    );
-                  },
+                child: Wrap(
+                  runSpacing: getVerticalSize(
+                    5,
+                  ),
+                  spacing: getHorizontalSize(
+                    5,
+                  ),
+                  children: List<Widget>.generate(
+                      27, (index) => ChipviewartItemWidget()),
                 ),
               ),
             ],
@@ -153,7 +119,7 @@ class InterestsScreen extends StatelessWidget {
                 height: getVerticalSize(
                   60,
                 ),
-                text: "lbl_next".tr,
+                text: "Next",
                 margin: getMargin(
                   bottom: 22,
                 ),

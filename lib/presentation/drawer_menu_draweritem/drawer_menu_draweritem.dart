@@ -1,4 +1,3 @@
-import 'bloc/drawer_menu_bloc.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:flutter/material.dart';
 
@@ -27,14 +26,14 @@ class DrawerMenuDraweritem extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text("lbl_welcome".tr,
+                                  Text("Welcome",
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.left,
                                       style: AppStyle
                                           .txtPoppinsRegular14Gray40001),
                                   Padding(
                                       padding: getPadding(top: 2),
-                                      child: Text("lbl_john_doe".tr,
+                                      child: Text("John Doe",
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtPoppinsMedium18))
@@ -53,7 +52,7 @@ class DrawerMenuDraweritem extends StatelessWidget {
                       },
                       child: Padding(
                           padding: getPadding(left: 1, top: 67),
-                          child: Text("lbl_home".tr,
+                          child: Text("Home",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtPoppinsMedium18))),
@@ -63,7 +62,7 @@ class DrawerMenuDraweritem extends StatelessWidget {
                       },
                       child: Padding(
                           padding: getPadding(left: 1, top: 28),
-                          child: Text("lbl_explore".tr,
+                          child: Text("Explore",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtPoppinsMedium18))),
@@ -73,7 +72,7 @@ class DrawerMenuDraweritem extends StatelessWidget {
                       },
                       child: Padding(
                           padding: getPadding(left: 1, top: 24),
-                          child: Text("lbl_interests".tr,
+                          child: Text("Interests",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtPoppinsMedium18))),
@@ -83,7 +82,7 @@ class DrawerMenuDraweritem extends StatelessWidget {
                       },
                       child: Padding(
                           padding: getPadding(left: 1, top: 25),
-                          child: Text("msg_terms_and_condi2".tr,
+                          child: Text("Terms and conditions",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtPoppinsMedium18))),
@@ -93,7 +92,7 @@ class DrawerMenuDraweritem extends StatelessWidget {
                       },
                       child: Padding(
                           padding: getPadding(left: 1, top: 28),
-                          child: Text("lbl_privacy_policy".tr,
+                          child: Text("Privacy policy",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtPoppinsMedium18))),
@@ -105,7 +104,7 @@ class DrawerMenuDraweritem extends StatelessWidget {
                       indent: getHorizontalSize(1)),
                   Padding(
                       padding: getPadding(left: 2, top: 24),
-                      child: Text("lbl_logout".tr,
+                      child: Text("Logout",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtPoppinsMedium18Black900))
@@ -113,32 +112,22 @@ class DrawerMenuDraweritem extends StatelessWidget {
   }
 
   onTapTxtHome(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.homeScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.homeScreen);
   }
 
   onTapTxtAudio(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.exploreScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.exploreScreen);
   }
 
   onTapTxtReadingList(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.interestsTopicsScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.interestsTopicsScreen);
   }
 
   onTapTxtTermAndCondition(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.termsAndConditionsScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.termsAndConditionsScreen);
   }
 
   onTapTxtNewStory(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.privacyPolicyScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.privacyPolicyScreen);
   }
 }

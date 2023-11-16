@@ -1,13 +1,10 @@
-import '../models/listprofilepicture_item_model.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:bulle_s_application3/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ListprofilepictureItemWidget extends StatelessWidget {
-  ListprofilepictureItemWidget(this.listprofilepictureItemModelObj);
-
-  ListprofilepictureItemModel listprofilepictureItemModelObj;
+  ListprofilepictureItemWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +41,7 @@ class ListprofilepictureItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "lbl_john_doe".tr,
+                  "John Doe",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtPoppinsSemiBold16,
@@ -57,7 +54,7 @@ class ListprofilepictureItemWidget extends StatelessWidget {
                     top: 2,
                   ),
                   child: Text(
-                    listprofilepictureItemModelObj.descriptionTxt,
+                    "",
                     maxLines: null,
                     textAlign: TextAlign.left,
                     style: AppStyle.txtPoppinsRegular12Bluegray300,
@@ -74,7 +71,7 @@ class ListprofilepictureItemWidget extends StatelessWidget {
             width: getHorizontalSize(
               87,
             ),
-            text: "lbl_follow".tr,
+            text: "Follow",
             margin: getMargin(
               bottom: 30,
             ),

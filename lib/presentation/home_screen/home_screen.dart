@@ -1,8 +1,5 @@
 import '../drawer_menu_draweritem/drawer_menu_draweritem.dart';
 import '../home_screen/widgets/home_item_widget.dart';
-import 'bloc/home_bloc.dart';
-import 'models/home_item_model.dart';
-import 'models/home_model.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:bulle_s_application3/widgets/app_bar/appbar_image.dart';
 import 'package:bulle_s_application3/widgets/app_bar/appbar_title.dart';
@@ -13,13 +10,6 @@ import 'package:flutter/material.dart';
 // ignore_for_file: must_be_immutable
 class HomeScreen extends StatelessWidget {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  static Widget builder(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-        create: (context) => HomeBloc(HomeState(homeModelObj: HomeModel()))
-          ..add(HomeInitialEvent()),
-        child: HomeScreen());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +29,7 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       onTapMenu(context);
                     }),
-                title: AppbarTitle(
-                    text: "lbl_home".tr, margin: getMargin(left: 22)),
+                title: AppbarTitle(text: "Home", margin: getMargin(left: 22)),
                 actions: [
                   AppbarImage(
                       height: getVerticalSize(21),
@@ -69,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                                     CustomButton(
                                         height: getVerticalSize(40),
                                         width: getHorizontalSize(83),
-                                        text: "lbl_science".tr,
+                                        text: "Science",
                                         margin: getMargin(bottom: 1),
                                         variant: ButtonVariant.FillBlack9005e,
                                         shape: ButtonShape.CircleBorder20,
@@ -100,8 +89,7 @@ class HomeScreen extends StatelessWidget {
                                                           padding: getPadding(
                                                               top: 4),
                                                           child: Text(
-                                                              "lbl_lorem_ipsum"
-                                                                  .tr,
+                                                              "Lorem Ipsum",
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -115,8 +103,7 @@ class HomeScreen extends StatelessWidget {
                                                               left: 137,
                                                               top: 5),
                                                           child: Text(
-                                                              "lbl_technology"
-                                                                  .tr,
+                                                              "Technology",
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -129,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                                     CustomButton(
                                         height: getVerticalSize(40),
                                         width: getHorizontalSize(83),
-                                        text: "lbl_design".tr,
+                                        text: "Design",
                                         margin: getMargin(left: 12, bottom: 1),
                                         variant: ButtonVariant.FillBlack9005e,
                                         shape: ButtonShape.CircleBorder20,
@@ -168,8 +155,7 @@ class HomeScreen extends StatelessWidget {
                                           Container(
                                               width: getHorizontalSize(72),
                                               margin: getMargin(top: 8),
-                                              child: Text(
-                                                  "msg_lorem_ipsum_dol".tr,
+                                              child: Text("Lorem Ipsum Dolor",
                                                   maxLines: null,
                                                   textAlign: TextAlign.center,
                                                   style: AppStyle
@@ -195,7 +181,7 @@ class HomeScreen extends StatelessWidget {
                                                   width: getHorizontalSize(72),
                                                   margin: getMargin(top: 8),
                                                   child: Text(
-                                                      "msg_lorem_ipsum_dol".tr,
+                                                      "Lorem Ipsum Dolor",
                                                       maxLines: null,
                                                       textAlign:
                                                           TextAlign.center,
@@ -222,7 +208,7 @@ class HomeScreen extends StatelessWidget {
                                                   width: getHorizontalSize(72),
                                                   margin: getMargin(top: 8),
                                                   child: Text(
-                                                      "msg_lorem_ipsum_dol".tr,
+                                                      "Lorem Ipsum Dolor",
                                                       maxLines: null,
                                                       textAlign:
                                                           TextAlign.center,
@@ -250,7 +236,7 @@ class HomeScreen extends StatelessWidget {
                                                   width: getHorizontalSize(77),
                                                   margin: getMargin(top: 8),
                                                   child: Text(
-                                                      "msg_lorem_ipsum_dol".tr,
+                                                      "Lorem Ipsum Dolor",
                                                       maxLines: null,
                                                       textAlign:
                                                           TextAlign.center,
@@ -268,38 +254,29 @@ class HomeScreen extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                               padding: getPadding(left: 20, top: 27),
-                              child: Text("lbl_top_stories".tr,
+                              child: Text("TOP STORIES",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: AppStyle.txtPoppinsSemiBold14))),
                       Padding(
                           padding: getPadding(left: 20, top: 19, right: 20),
-                          child: BlocSelector<HomeBloc, HomeState, HomeModel?>(
-                              selector: (state) => state.homeModelObj,
-                              builder: (context, homeModelObj) {
-                                return ListView.separated(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    separatorBuilder: (context, index) {
-                                      return Padding(
-                                          padding: getPadding(
-                                              top: 23.0, bottom: 23.0),
-                                          child: SizedBox(
-                                              width: getHorizontalSize(335),
-                                              child: Divider(
-                                                  height: getVerticalSize(1),
-                                                  thickness: getVerticalSize(1),
-                                                  color: ColorConstant
-                                                      .gray40087)));
-                                    },
-                                    itemCount:
-                                        homeModelObj?.homeItemList.length ?? 0,
-                                    itemBuilder: (context, index) {
-                                      HomeItemModel model =
-                                          homeModelObj?.homeItemList[index] ??
-                                              HomeItemModel();
-                                      return HomeItemWidget(model);
-                                    });
+                          child: ListView.separated(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              separatorBuilder: (context, index) {
+                                return Padding(
+                                    padding:
+                                        getPadding(top: 23.0, bottom: 23.0),
+                                    child: SizedBox(
+                                        width: getHorizontalSize(335),
+                                        child: Divider(
+                                            height: getVerticalSize(1),
+                                            thickness: getVerticalSize(1),
+                                            color: ColorConstant.gray40087)));
+                              },
+                              itemCount: 3,
+                              itemBuilder: (context, index) {
+                                return HomeItemWidget();
                               })),
                       Padding(
                           padding: getPadding(top: 26, bottom: 5),

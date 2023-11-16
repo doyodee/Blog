@@ -1,13 +1,10 @@
-import '../models/listthumbnail_item_model.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:bulle_s_application3/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ListthumbnailItemWidget extends StatelessWidget {
-  ListthumbnailItemWidget(this.listthumbnailItemModelObj);
-
-  ListthumbnailItemModel listthumbnailItemModelObj;
+  ListthumbnailItemWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +34,7 @@ class ListthumbnailItemWidget extends StatelessWidget {
               bottom: 9,
             ),
             child: Text(
-              listthumbnailItemModelObj.typeTxt,
+              "",
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.left,
               style: AppStyle.txtPoppinsRegular14Gray900,
@@ -51,7 +48,7 @@ class ListthumbnailItemWidget extends StatelessWidget {
             width: getHorizontalSize(
               87,
             ),
-            text: "lbl_follow".tr,
+            text: "Follow",
             margin: getMargin(
               top: 4,
               bottom: 4,

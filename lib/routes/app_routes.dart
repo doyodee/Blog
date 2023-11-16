@@ -40,22 +40,19 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
-  static const String initialRoute = '/initialRoute';
-
-  static Map<String, WidgetBuilder> get routes => {
-        homeScreen: HomeScreen.builder,
-        signInScreen: SignInScreen.builder,
-        signUpScreen: SignUpScreen.builder,
-        interestsScreen: InterestsScreen.builder,
-        searchTopicsScreen: SearchTopicsScreen.builder,
-        interestsTopicsScreen: InterestsTopicsScreen.builder,
-        interestsPeopleScreen: InterestsPeopleScreen.builder,
-        exploreScreen: ExploreScreen.builder,
-        blogScreen: BlogScreen.builder,
-        termsAndConditionsScreen: TermsAndConditionsScreen.builder,
-        privacyPolicyScreen: PrivacyPolicyScreen.builder,
-        notificationsScreen: NotificationsScreen.builder,
-        appNavigationScreen: AppNavigationScreen.builder,
-        initialRoute: HomeScreen.builder
-      };
+  static Map<String, WidgetBuilder> routes = {
+    homeScreen: (context) => HomeScreen(),
+    signInScreen: (context) => SignInScreen(),
+    signUpScreen: (context) => SignUpScreen(),
+    interestsScreen: (context) => InterestsScreen(),
+    searchTopicsScreen: (context) => SearchTopicsScreen(),
+    interestsTopicsScreen: (context) => InterestsTopicsScreen(),
+    interestsPeopleScreen: (context) => InterestsPeopleScreen(),
+    exploreScreen: (context) => ExploreScreen(),
+    blogScreen: (context) => BlogScreen(),
+    termsAndConditionsScreen: (context) => TermsAndConditionsScreen(),
+    privacyPolicyScreen: (context) => PrivacyPolicyScreen(),
+    notificationsScreen: (context) => NotificationsScreen(),
+    appNavigationScreen: (context) => AppNavigationScreen()
+  };
 }

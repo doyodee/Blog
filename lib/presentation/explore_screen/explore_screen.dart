@@ -1,7 +1,4 @@
 import '../explore_screen/widgets/explore_item_widget.dart';
-import 'bloc/explore_bloc.dart';
-import 'models/explore_item_model.dart';
-import 'models/explore_model.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:bulle_s_application3/widgets/app_bar/appbar_image.dart';
 import 'package:bulle_s_application3/widgets/app_bar/appbar_title.dart';
@@ -10,14 +7,9 @@ import 'package:bulle_s_application3/widgets/custom_button.dart';
 import 'package:bulle_s_application3/widgets/custom_search_view.dart';
 import 'package:flutter/material.dart';
 
+// ignore_for_file: must_be_immutable
 class ExploreScreen extends StatelessWidget {
-  static Widget builder(BuildContext context) {
-    return BlocProvider<ExploreBloc>(
-        create: (context) =>
-            ExploreBloc(ExploreState(exploreModelObj: ExploreModel()))
-              ..add(ExploreInitialEvent()),
-        child: ExploreScreen());
-  }
+  TextEditingController serachboxController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +25,8 @@ class ExploreScreen extends StatelessWidget {
                     width: getHorizontalSize(19),
                     svgPath: ImageConstant.imgMenu,
                     margin: getMargin(left: 28, top: 15, bottom: 20)),
-                title: AppbarTitle(
-                    text: "lbl_explore".tr, margin: getMargin(left: 22)),
+                title:
+                    AppbarTitle(text: "Explore", margin: getMargin(left: 22)),
                 actions: [
                   AppbarImage(
                       height: getVerticalSize(21),
@@ -53,35 +45,27 @@ class ExploreScreen extends StatelessWidget {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      BlocSelector<ExploreBloc, ExploreState,
-                              TextEditingController?>(
-                          selector: (state) => state.serachboxController,
-                          builder: (context, serachboxController) {
-                            return CustomSearchView(
-                                focusNode: FocusNode(),
-                                controller: serachboxController,
-                                hintText: "lbl_search".tr,
-                                margin: getMargin(left: 28, right: 28),
-                                prefix: Container(
-                                    margin: getMargin(
-                                        left: 20,
-                                        top: 17,
-                                        right: 14,
-                                        bottom: 17),
-                                    child: CustomImageView(
-                                        svgPath: ImageConstant.imgSearch)),
-                                prefixConstraints: BoxConstraints(
-                                    maxHeight: getVerticalSize(48)),
-                                suffix: Padding(
-                                    padding: EdgeInsets.only(
-                                        right: getHorizontalSize(15)),
-                                    child: IconButton(
-                                        onPressed: () {
-                                          serachboxController!.clear();
-                                        },
-                                        icon: Icon(Icons.clear,
-                                            color: Colors.grey.shade600))));
-                          }),
+                      CustomSearchView(
+                          focusNode: FocusNode(),
+                          controller: serachboxController,
+                          hintText: "Search",
+                          margin: getMargin(left: 28, right: 28),
+                          prefix: Container(
+                              margin: getMargin(
+                                  left: 20, top: 17, right: 14, bottom: 17),
+                              child: CustomImageView(
+                                  svgPath: ImageConstant.imgSearch)),
+                          prefixConstraints:
+                              BoxConstraints(maxHeight: getVerticalSize(48)),
+                          suffix: Padding(
+                              padding:
+                                  EdgeInsets.only(right: getHorizontalSize(15)),
+                              child: IconButton(
+                                  onPressed: () {
+                                    serachboxController.clear();
+                                  },
+                                  icon: Icon(Icons.clear,
+                                      color: Colors.grey.shade600)))),
                       Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
@@ -92,7 +76,7 @@ class ExploreScreen extends StatelessWidget {
                                     CustomButton(
                                         height: getVerticalSize(40),
                                         width: getHorizontalSize(83),
-                                        text: "lbl_science".tr,
+                                        text: "Science",
                                         margin: getMargin(bottom: 1),
                                         variant: ButtonVariant.FillBlack9005e,
                                         shape: ButtonShape.CircleBorder20,
@@ -123,8 +107,7 @@ class ExploreScreen extends StatelessWidget {
                                                           padding: getPadding(
                                                               top: 4),
                                                           child: Text(
-                                                              "lbl_lorem_ipsum"
-                                                                  .tr,
+                                                              "Lorem Ipsum",
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -138,8 +121,7 @@ class ExploreScreen extends StatelessWidget {
                                                               left: 137,
                                                               top: 5),
                                                           child: Text(
-                                                              "lbl_technology"
-                                                                  .tr,
+                                                              "Technology",
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -152,7 +134,7 @@ class ExploreScreen extends StatelessWidget {
                                     CustomButton(
                                         height: getVerticalSize(40),
                                         width: getHorizontalSize(83),
-                                        text: "lbl_design".tr,
+                                        text: "Design",
                                         margin: getMargin(left: 12, bottom: 1),
                                         variant: ButtonVariant.FillBlack9005e,
                                         shape: ButtonShape.CircleBorder20,
@@ -176,40 +158,29 @@ class ExploreScreen extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                               padding: getPadding(left: 20, top: 28),
-                              child: Text("msg_recommended_for".tr,
+                              child: Text("RECOMMENDED FOR YOU",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: AppStyle.txtPoppinsSemiBold14))),
                       Padding(
                           padding: getPadding(left: 20, top: 23, right: 20),
-                          child: BlocSelector<ExploreBloc, ExploreState,
-                                  ExploreModel?>(
-                              selector: (state) => state.exploreModelObj,
-                              builder: (context, exploreModelObj) {
-                                return ListView.separated(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    separatorBuilder: (context, index) {
-                                      return Padding(
-                                          padding: getPadding(
-                                              top: 23.0, bottom: 23.0),
-                                          child: SizedBox(
-                                              width: getHorizontalSize(335),
-                                              child: Divider(
-                                                  height: getVerticalSize(1),
-                                                  thickness: getVerticalSize(1),
-                                                  color: ColorConstant
-                                                      .gray40087)));
-                                    },
-                                    itemCount: exploreModelObj
-                                            ?.exploreItemList.length ??
-                                        0,
-                                    itemBuilder: (context, index) {
-                                      ExploreItemModel model = exploreModelObj
-                                              ?.exploreItemList[index] ??
-                                          ExploreItemModel();
-                                      return ExploreItemWidget(model);
-                                    });
+                          child: ListView.separated(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              separatorBuilder: (context, index) {
+                                return Padding(
+                                    padding:
+                                        getPadding(top: 23.0, bottom: 23.0),
+                                    child: SizedBox(
+                                        width: getHorizontalSize(335),
+                                        child: Divider(
+                                            height: getVerticalSize(1),
+                                            thickness: getVerticalSize(1),
+                                            color: ColorConstant.gray40087)));
+                              },
+                              itemCount: 3,
+                              itemBuilder: (context, index) {
+                                return ExploreItemWidget();
                               })),
                       Padding(
                           padding: getPadding(top: 26, bottom: 5),

@@ -1,7 +1,4 @@
 import '../interests_people_screen/widgets/listprofilepicture_item_widget.dart';
-import 'bloc/interests_people_bloc.dart';
-import 'models/interests_people_model.dart';
-import 'models/listprofilepicture_item_model.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:bulle_s_application3/widgets/app_bar/appbar_image.dart';
 import 'package:bulle_s_application3/widgets/app_bar/appbar_title.dart';
@@ -9,16 +6,6 @@ import 'package:bulle_s_application3/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class InterestsPeopleScreen extends StatelessWidget {
-  static Widget builder(BuildContext context) {
-    return BlocProvider<InterestsPeopleBloc>(
-      create: (context) => InterestsPeopleBloc(InterestsPeopleState(
-        interestsPeopleModelObj: InterestsPeopleModel(),
-      ))
-        ..add(InterestsPeopleInitialEvent()),
-      child: InterestsPeopleScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,7 +31,7 @@ class InterestsPeopleScreen extends StatelessWidget {
             ),
           ),
           title: AppbarTitle(
-            text: "lbl_interests".tr,
+            text: "Interests",
             margin: getMargin(
               left: 22,
             ),
@@ -102,7 +89,7 @@ class InterestsPeopleScreen extends StatelessWidget {
                         top: 1,
                       ),
                       child: Text(
-                        "lbl_topics".tr,
+                        "Topics",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtPoppinsRegular14,
@@ -114,7 +101,7 @@ class InterestsPeopleScreen extends StatelessWidget {
                         top: 1,
                       ),
                       child: Text(
-                        "lbl_people".tr,
+                        "People",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtPoppinsRegular14,
@@ -126,7 +113,7 @@ class InterestsPeopleScreen extends StatelessWidget {
                         bottom: 1,
                       ),
                       child: Text(
-                        "lbl_publication".tr,
+                        "Publication",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtPoppinsRegular14,
@@ -165,7 +152,7 @@ class InterestsPeopleScreen extends StatelessWidget {
                   top: 18,
                 ),
                 child: Text(
-                  "msg_see_all_people".tr,
+                  "SEE ALL PEOPLE YOU FOLLOW",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtPoppinsSemiBold14,
@@ -184,7 +171,7 @@ class InterestsPeopleScreen extends StatelessWidget {
                 ),
                 decoration: AppDecoration.txtFillGray300,
                 child: Text(
-                  "msg_more_people_to".tr,
+                  "MORE PEOPLE TO FOLLOW",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtPoppinsSemiBold14,
@@ -198,48 +185,34 @@ class InterestsPeopleScreen extends StatelessWidget {
                     top: 24,
                     right: 28,
                   ),
-                  child: BlocSelector<InterestsPeopleBloc, InterestsPeopleState,
-                      InterestsPeopleModel?>(
-                    selector: (state) => state.interestsPeopleModelObj,
-                    builder: (context, interestsPeopleModelObj) {
-                      return ListView.separated(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) {
-                          return Padding(
-                            padding: getPadding(
-                              top: 23.5,
-                              bottom: 23.5,
+                  child: ListView.separated(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    separatorBuilder: (context, index) {
+                      return Padding(
+                        padding: getPadding(
+                          top: 23.5,
+                          bottom: 23.5,
+                        ),
+                        child: SizedBox(
+                          width: getHorizontalSize(
+                            319,
+                          ),
+                          child: Divider(
+                            height: getVerticalSize(
+                              1,
                             ),
-                            child: SizedBox(
-                              width: getHorizontalSize(
-                                319,
-                              ),
-                              child: Divider(
-                                height: getVerticalSize(
-                                  1,
-                                ),
-                                thickness: getVerticalSize(
-                                  1,
-                                ),
-                                color: ColorConstant.gray40087,
-                              ),
+                            thickness: getVerticalSize(
+                              1,
                             ),
-                          );
-                        },
-                        itemCount: interestsPeopleModelObj
-                                ?.listprofilepictureItemList.length ??
-                            0,
-                        itemBuilder: (context, index) {
-                          ListprofilepictureItemModel model =
-                              interestsPeopleModelObj
-                                      ?.listprofilepictureItemList[index] ??
-                                  ListprofilepictureItemModel();
-                          return ListprofilepictureItemWidget(
-                            model,
-                          );
-                        },
+                            color: ColorConstant.gray40087,
+                          ),
+                        ),
                       );
+                    },
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return ListprofilepictureItemWidget();
                     },
                   ),
                 ),

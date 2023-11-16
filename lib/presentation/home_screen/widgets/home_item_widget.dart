@@ -1,12 +1,9 @@
-import '../models/home_item_model.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class HomeItemWidget extends StatelessWidget {
-  HomeItemWidget(this.homeItemModelObj);
-
-  HomeItemModel homeItemModelObj;
+  HomeItemWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,7 @@ class HomeItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "lbl_logo".tr,
+              "LOGO",
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.left,
               style: AppStyle.txtPoppinsSemiBold12,
@@ -28,7 +25,7 @@ class HomeItemWidget extends StatelessWidget {
                 top: 6,
               ),
               child: Text(
-                "msg_lorem_ipsum_dol2".tr,
+                "Lorem Ipsum dolor set amet",
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.left,
                 style: AppStyle.txtPoppinsSemiBold16,
@@ -46,7 +43,7 @@ class HomeItemWidget extends StatelessWidget {
                       top: 1,
                     ),
                     child: Text(
-                      "lbl_16_days_ago".tr,
+                      "16 days ago",
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
                       style: AppStyle.txtPoppinsMedium12,
@@ -79,7 +76,7 @@ class HomeItemWidget extends StatelessWidget {
                       bottom: 1,
                     ),
                     child: Text(
-                      "lbl_3_min_read".tr,
+                      "3 min read",
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
                       style: AppStyle.txtPoppinsMedium12,

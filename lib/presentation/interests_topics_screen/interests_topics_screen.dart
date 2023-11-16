@@ -1,7 +1,4 @@
 import '../interests_topics_screen/widgets/listthumbnail_item_widget.dart';
-import 'bloc/interests_topics_bloc.dart';
-import 'models/interests_topics_model.dart';
-import 'models/listthumbnail_item_model.dart';
 import 'package:bulle_s_application3/core/app_export.dart';
 import 'package:bulle_s_application3/widgets/app_bar/appbar_image.dart';
 import 'package:bulle_s_application3/widgets/app_bar/appbar_title.dart';
@@ -9,16 +6,6 @@ import 'package:bulle_s_application3/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class InterestsTopicsScreen extends StatelessWidget {
-  static Widget builder(BuildContext context) {
-    return BlocProvider<InterestsTopicsBloc>(
-      create: (context) => InterestsTopicsBloc(InterestsTopicsState(
-        interestsTopicsModelObj: InterestsTopicsModel(),
-      ))
-        ..add(InterestsTopicsInitialEvent()),
-      child: InterestsTopicsScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,7 +31,7 @@ class InterestsTopicsScreen extends StatelessWidget {
             ),
           ),
           title: AppbarTitle(
-            text: "lbl_interests".tr,
+            text: "Interests",
             margin: getMargin(
               left: 22,
             ),
@@ -101,7 +88,7 @@ class InterestsTopicsScreen extends StatelessWidget {
                         top: 1,
                       ),
                       child: Text(
-                        "lbl_topics".tr,
+                        "Topics",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtPoppinsRegular14,
@@ -113,7 +100,7 @@ class InterestsTopicsScreen extends StatelessWidget {
                         top: 1,
                       ),
                       child: Text(
-                        "lbl_people".tr,
+                        "People",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtPoppinsRegular14,
@@ -125,7 +112,7 @@ class InterestsTopicsScreen extends StatelessWidget {
                         bottom: 1,
                       ),
                       child: Text(
-                        "lbl_publication".tr,
+                        "Publication",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtPoppinsRegular14,
@@ -164,7 +151,7 @@ class InterestsTopicsScreen extends StatelessWidget {
                   top: 24,
                 ),
                 child: Text(
-                  "msg_arts_entertai".tr,
+                  "ARTS & ENTERTAINMENT",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtPoppinsSemiBold14,
@@ -178,32 +165,19 @@ class InterestsTopicsScreen extends StatelessWidget {
                     top: 20,
                     right: 28,
                   ),
-                  child: BlocSelector<InterestsTopicsBloc, InterestsTopicsState,
-                      InterestsTopicsModel?>(
-                    selector: (state) => state.interestsTopicsModelObj,
-                    builder: (context, interestsTopicsModelObj) {
-                      return ListView.separated(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) {
-                          return SizedBox(
-                            height: getVerticalSize(
-                              20,
-                            ),
-                          );
-                        },
-                        itemCount: interestsTopicsModelObj
-                                ?.listthumbnailItemList.length ??
-                            0,
-                        itemBuilder: (context, index) {
-                          ListthumbnailItemModel model = interestsTopicsModelObj
-                                  ?.listthumbnailItemList[index] ??
-                              ListthumbnailItemModel();
-                          return ListthumbnailItemWidget(
-                            model,
-                          );
-                        },
+                  child: ListView.separated(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: getVerticalSize(
+                          20,
+                        ),
                       );
+                    },
+                    itemCount: 9,
+                    itemBuilder: (context, index) {
+                      return ListthumbnailItemWidget();
                     },
                   ),
                 ),
